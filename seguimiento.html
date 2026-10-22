@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seguimiento · Programa de Hemodiálisis · SIGESAPOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hd.css">
+</head>
+<body>
+<nav class="proto-nav" aria-label="Pantallas del prototipo">
+  <strong>PROTOTIPO HD</strong>
+  <a href="index.html">0 · Flujo</a>
+  <a href="bandeja.html">1 · Bandeja</a>
+  <a href="ficha-inicial.html">2 · Ficha inicial</a>
+  <a href="programacion.html">3 · Programación</a>
+  <a href="sesion.html">4 · Sesión</a>
+  <a href="seguimiento.html">5 · Seguimiento</a>
+</nav>
+
+<main class="contenedor">
+  <div class="cabecera">
+    <div class="pila">
+      <span class="eyebrow">SEGUIMIENTO · PROGRAMA DE HEMODIÁLISIS</span>
+      <h1 class="grande" style="margin:0">ROMERO MANRIQUE DE MEJIA, LOURDES MARGOT</h1>
+      <span class="meta">DNI 09015037 · Ingreso 22/10/2026 · Lun-Mié-Vie · Mañana · Puesto 04</span>
+    </div>
+    <span class="pill pill-verde">PERIODO 1 · ACTIVO</span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><span class="k">SESIONES REALIZADAS</span><span id="kpi-realizadas" class="v">—</span></div>
+    <div class="kpi"><span class="k">INASISTENCIAS</span><span id="kpi-faltas" class="v">—</span></div>
+    <div class="kpi"><span class="k">CON INCIDENCIAS</span><span class="v">1</span></div>
+    <div class="kpi"><span class="k">PRÓXIMA SESIÓN</span><span class="v" style="font-size:18px">Mié 04/11 · 07:00</span></div>
+  </div>
+
+  <section class="panel">
+    <div class="panel-titulo"><span>LÍNEA DE SESIONES DEL PERIODO</span><span class="sub">Clic en una sesión para ver su registro</span></div>
+    <div id="linea-sesiones" class="linea-sesiones"></div>
+    <div class="leyenda">
+      <span><i class="cuadro" style="border:2px solid var(--verde);background:var(--verde-fondo)"></i>Realizada</span>
+      <span><i class="cuadro" style="border:2px solid #1565c0;background:var(--azul-fondo)"></i>Hoy</span>
+      <span><i class="cuadro" style="border:1px solid var(--borde)"></i>Programada</span>
+      <span><i class="cuadro" style="border:2px solid var(--rojo);background:#ffebee"></i>No asistió (se ofrece reprogramar)</span>
+    </div>
+  </section>
+
+  <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(440px,1fr))">
+    <section class="panel">
+      <div class="panel-titulo">RESUMEN POR SESIÓN</div>
+      <div class="tabla-wrap">
+        <table class="tabla" style="min-width:440px">
+          <thead><tr><th>Sesión</th><th>Peso pre</th><th>Peso post</th><th>UF (ml)</th><th>PA pre / post</th><th>Incid.</th></tr></thead>
+          <tbody>
+            <tr><td>S1 · 26/10</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ] / [ ]</td><td>—</td></tr>
+            <tr><td>S2 · 28/10</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ] / [ ]</td><td>—</td></tr>
+            <tr><td>S3 · 30/10</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ] / [ ]</td><td><span class="pill pill-naranja">Hipotensión</span></td></tr>
+            <tr><td>S4 · 02/11</td><td>[ ]</td><td>[ ]</td><td>[ ]</td><td>[ ] / [ ]</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-titulo"><span>LABORATORIO DE CONTROL MENSUAL</span><a href="#">Solicitar exámenes</a></div>
+      <table class="tabla">
+        <thead><tr><th>Examen</th><th>Ingreso</th><th>Mes 1</th><th>Tendencia</th></tr></thead>
+        <tbody>
+          <tr><td>Hemoglobina</td><td>[ ]</td><td>Pendiente</td><td>—</td></tr>
+          <tr><td>Urea pre / post (URR)</td><td>[ ]</td><td>Pendiente</td><td>—</td></tr>
+          <tr><td>Potasio</td><td>[ ]</td><td>Pendiente</td><td>—</td></tr>
+          <tr><td>Fósforo / Calcio</td><td>[ ]</td><td>Pendiente</td><td>—</td></tr>
+          <tr><td>Albúmina</td><td>[ ]</td><td>Pendiente</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <section id="reevaluacion" class="panel" style="border-color:#ce93d8;background:#fbf6fc">
+    <div class="panel-titulo" style="border-color:#e1bee7"><span>REEVALUACIÓN AL CIERRE DEL PERIODO</span><span class="sub">Se habilita en la sesión 11 de 12</span></div>
+    <p style="margin:0;font-size:13px">El nefrólogo revisa evolución y laboratorio y decide la continuidad. Cada opción deja registro en la historia clínica.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px">
+      <a class="btn btn-primario" href="programacion.html">Continuar · nueva programación</a>
+      <a class="btn btn-verde" href="ficha-inicial.html">Ajustar prescripción</a>
+      <button type="button" class="btn btn-gris">Contrarreferir / transferir</button>
+      <button type="button" class="btn btn-rojo">Egreso del programa</button>
+    </div>
+  </section>
+</main>
+<script src="js/hd.js"></script>
+</body>
+</html>

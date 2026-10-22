@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registro de sesión · Hemodiálisis · SIGESAPOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hd.css">
+</head>
+<body>
+<nav class="proto-nav" aria-label="Pantallas del prototipo">
+  <strong>PROTOTIPO HD</strong>
+  <a href="index.html">0 · Flujo</a>
+  <a href="bandeja.html">1 · Bandeja</a>
+  <a href="ficha-inicial.html">2 · Ficha inicial</a>
+  <a href="programacion.html">3 · Programación</a>
+  <a href="sesion.html">4 · Sesión</a>
+  <a href="seguimiento.html">5 · Seguimiento</a>
+</nav>
+
+<main class="contenedor">
+  <div class="cabecera">
+    <div class="pila">
+      <span class="eyebrow">SESIÓN DE HEMODIÁLISIS</span>
+      <h1 class="grande" style="margin:0">Sesión 5 de 12 · Mié 04/11/2026 · Mañana 07:00</h1>
+      <span class="meta">ROMERO MANRIQUE DE MEJIA, LOURDES MARGOT · DNI 09015037 · Puesto 04 · Sala general</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn sm btn-verde" href="seguimiento.html">Ver seguimiento</a>
+      <a class="btn sm btn-gris" href="ficha-inicial.html">Ver ficha inicial</a>
+    </div>
+  </div>
+
+  <!-- data-*: valores que en producción envía el backend -->
+  <form id="form-sesion" data-peso-post-anterior="62.0" data-peso-seco="61.5" style="display:flex;flex-direction:column;gap:16px" novalidate>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <span style="font-size:12px;font-weight:700;color:var(--texto-3)">PRESCRIPCIÓN VIGENTE:</span>
+      <span class="chip">4 h</span><span class="chip">Qb [ ] ml/min</span><span class="chip">Qd [ ] ml/min</span><span class="chip">Filtro [ ]</span><span class="chip">Baño K [ ] / Ca [ ]</span><span class="chip">Heparina</span><span class="chip">Peso seco 61.5 kg</span>
+      <a href="#" style="font-size:12.5px">Modificar para esta sesión</a>
+    </div>
+
+    <div class="kpis">
+      <fieldset class="kpi" style="margin:0"><legend class="k" style="padding:0">ASISTENCIA</legend>
+        <div style="display:flex;gap:6px 14px;flex-wrap:wrap">
+          <label class="chk"><input type="radio" name="asistencia" value="ASISTIO" checked> Asistió</label>
+          <label class="chk"><input type="radio" name="asistencia" value="NO_ASISTIO"> No asistió</label>
+          <label class="chk"><input type="radio" name="asistencia" value="SUSPENDIDA"> Suspendida</label>
+        </div>
+      </fieldset>
+      <div class="kpi"><span class="k">PESO POST SESIÓN ANTERIOR</span><span class="v">62.0 kg</span></div>
+      <div class="kpi"><span class="k">GANANCIA INTERDIALÍTICA</span><span id="kpi-ganancia" class="v">—</span></div>
+    </div>
+
+    <div id="motivo-inasistencia" class="panel" hidden>
+      <div class="panel-titulo">MOTIVO</div>
+      <div><label class="lbl" for="m-motivo">Motivo de inasistencia / suspensión</label><textarea id="m-motivo" class="inp"></textarea></div>
+      <label class="chk"><input type="checkbox" checked> Ofrecer reprogramación de esta sesión</label>
+    </div>
+
+    <div class="grid-2" data-clinico>
+      <fieldset class="panel" style="margin:0"><legend class="sr-only">Pre-diálisis</legend>
+        <div class="panel-titulo">1. PRE-DIÁLISIS</div>
+        <div class="grid-campos compacto">
+          <div><label class="lbl" for="s-hora">Hora de ingreso</label><input id="s-hora" class="inp" value="07:00"></div>
+          <div><label class="lbl" for="s-peso-pre">Peso pre (kg)</label><input id="s-peso-pre" class="inp" inputmode="decimal"></div>
+          <div><label class="lbl" for="s-pa">PA (mmHg)</label><input id="s-pa" class="inp" placeholder="___ / ___"></div>
+          <div><label class="lbl" for="s-fc">FC (lpm)</label><input id="s-fc" class="inp" inputmode="numeric"></div>
+          <div><label class="lbl" for="s-temp">Temperatura (°C)</label><input id="s-temp" class="inp" inputmode="decimal"></div>
+          <div><label class="lbl" for="s-uf-prog">UF programada (ml)</label><input id="s-uf-prog" class="inp" placeholder="Calculada" readonly></div>
+        </div>
+        <div><label class="lbl" for="s-acceso">Evaluación del acceso vascular</label><select id="s-acceso" class="inp"><option>Funcionante, sin signos de infección</option><option>Con signos de infección</option><option>Disfuncional / bajo flujo</option></select></div>
+      </fieldset>
+
+      <fieldset class="panel" style="margin:0"><legend class="sr-only">Post-diálisis</legend>
+        <div class="panel-titulo">3. POST-DIÁLISIS</div>
+        <div class="grid-campos compacto">
+          <div><label class="lbl" for="t-hora">Hora de término</label><input id="t-hora" class="inp" placeholder="hh:mm"></div>
+          <div><label class="lbl" for="s-peso-post">Peso post (kg)</label><input id="s-peso-post" class="inp" inputmode="decimal"></div>
+          <div><label class="lbl" for="t-pa">PA (mmHg)</label><input id="t-pa" class="inp" placeholder="___ / ___"></div>
+          <div><label class="lbl" for="t-fc">FC (lpm)</label><input id="t-fc" class="inp" inputmode="numeric"></div>
+          <div><label class="lbl" for="t-uf">UF total lograda (ml)</label><input id="t-uf" class="inp" placeholder="Calculada" readonly></div>
+          <div><label class="lbl" for="t-ktv">Kt/V (si aplica)</label><input id="t-ktv" class="inp" inputmode="decimal"></div>
+        </div>
+        <div><label class="lbl" for="t-salida">Condición de salida</label><select id="t-salida" class="inp"><option>Estable, alta a domicilio</option><option>Referido a Emergencia</option><option>Hospitalizado</option></select></div>
+      </fieldset>
+    </div>
+
+    <section class="panel" data-clinico>
+      <div class="panel-titulo"><span>2. MONITOREO INTRADIÁLISIS</span><button type="button" id="btn-agregar-control" class="link-btn">+ Agregar control</button></div>
+      <div class="tabla-wrap">
+        <table id="tabla-monitoreo" class="tabla" style="min-width:880px">
+          <thead><tr><th style="width:90px">Hora</th><th>PA (mmHg)</th><th>FC</th><th>Qb</th><th>P. venosa</th><th>PTM</th><th>UF acumulada</th><th>Observación</th><th>Registró</th></tr></thead>
+          <tbody>
+            <tr><td><input class="inp sm" value="07:15" aria-label="Hora"></td><td><input class="inp sm" aria-label="PA" placeholder="120/80"></td><td><input class="inp sm" aria-label="FC"></td><td><input class="inp sm" aria-label="Qb"></td><td><input class="inp sm" aria-label="Presión venosa"></td><td><input class="inp sm" aria-label="PTM"></td><td><input class="inp sm" aria-label="UF acumulada"></td><td><input class="inp sm" aria-label="Observación"></td><td class="nota">[Enfermera]</td></tr>
+            <tr><td><input class="inp sm" value="08:00" aria-label="Hora"></td><td><input class="inp sm" aria-label="PA" placeholder="120/80"></td><td><input class="inp sm" aria-label="FC"></td><td><input class="inp sm" aria-label="Qb"></td><td><input class="inp sm" aria-label="Presión venosa"></td><td><input class="inp sm" aria-label="PTM"></td><td><input class="inp sm" aria-label="UF acumulada"></td><td><input class="inp sm" aria-label="Observación"></td><td class="nota">[Enfermera]</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota" style="margin:0">Si la PA sistólica registrada es menor de 90 mmHg, el sistema marca «Hipotensión» en incidencias.</p>
+    </section>
+
+    <div class="grid-2" data-clinico>
+      <fieldset class="panel" style="margin:0"><legend class="sr-only">Incidencias</legend>
+        <div class="panel-titulo">4. INCIDENCIAS / COMPLICACIONES</div>
+        <div id="incidencias" class="checks-2" data-grupo-excluyente>
+          <label class="chk"><input type="checkbox" id="inc-ninguna" data-ninguna> Ninguna</label>
+          <label class="chk"><input type="checkbox" id="inc-hipotension"> Hipotensión</label>
+          <label class="chk"><input type="checkbox"> Hipertensión</label>
+          <label class="chk"><input type="checkbox"> Calambres</label>
+          <label class="chk"><input type="checkbox"> Náuseas / vómitos</label>
+          <label class="chk"><input type="checkbox"> Cefalea</label>
+          <label class="chk"><input type="checkbox"> Fiebre / escalofríos</label>
+          <label class="chk"><input type="checkbox"> Coagulación del circuito</label>
+          <label class="chk"><input type="checkbox"> Sangrado del acceso</label>
+          <label class="chk"><input type="checkbox"> Otra</label>
+        </div>
+        <div><label class="lbl" for="i-detalle">Detalle y conducta</label><textarea id="i-detalle" class="inp"></textarea></div>
+      </fieldset>
+
+      <section class="panel">
+        <div class="panel-titulo">5. MEDICACIÓN ADMINISTRADA EN SESIÓN</div>
+        <table class="tabla">
+          <thead><tr><th>Medicamento</th><th>Dosis</th><th>Vía</th><th style="width:80px">Aplicado</th></tr></thead>
+          <tbody>
+            <tr><td>[De la receta: indicado en sesión]</td><td>[dosis]</td><td>EV</td><td><input type="checkbox" class="chk" aria-label="Aplicado"></td></tr>
+            <tr><td>[De la receta: indicado en sesión]</td><td>[dosis]</td><td>SC</td><td><input type="checkbox" class="chk" aria-label="Aplicado"></td></tr>
+            <tr><td>Heparina</td><td>[UI]</td><td>Circuito</td><td><input type="checkbox" class="chk" aria-label="Aplicado" checked></td></tr>
+          </tbody>
+        </table>
+        <p class="nota" style="margin:0">Lo aplicado descuenta del stock de farmacia vinculado a la receta.</p>
+      </section>
+    </div>
+
+    <fieldset class="panel" style="margin:0"><legend class="sr-only">Responsables</legend>
+      <div class="panel-titulo">RESPONSABLES DE LA SESIÓN</div>
+      <div class="grid-campos">
+        <div><label class="lbl" for="r-medico">Médico nefrólogo de turno</label><select id="r-medico" class="inp"><option>[Programado en el turno]</option></select></div>
+        <div><label class="lbl" for="r-enf">Enfermera(o)</label><select id="r-enf" class="inp"><option>[Seleccione]</option></select></div>
+        <div><label class="lbl" for="r-tec">Técnico de enfermería</label><select id="r-tec" class="inp"><option>[Seleccione]</option></select></div>
+      </div>
+      <div><label class="lbl" for="r-obs">Observaciones de la realización del procedimiento</label><textarea id="r-obs" class="inp"></textarea></div>
+    </fieldset>
+
+    <div class="fila-acciones">
+      <a class="btn btn-rojo" href="bandeja.html">CANCELAR</a>
+      <button type="button" id="btn-avance" class="btn btn-gris">GUARDAR AVANCE</button>
+      <button type="submit" class="btn btn-primario">CERRAR SESIÓN</button>
+    </div>
+  </form>
+</main>
+<script src="js/hd.js"></script>
+</body>
+</html>

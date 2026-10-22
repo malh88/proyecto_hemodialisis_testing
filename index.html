@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flujo propuesto · Hemodiálisis · SIGESAPOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hd.css">
+</head>
+<body>
+<nav class="proto-nav" aria-label="Pantallas del prototipo">
+  <strong>PROTOTIPO HD</strong>
+  <a href="index.html">0 · Flujo</a>
+  <a href="bandeja.html">1 · Bandeja</a>
+  <a href="ficha-inicial.html">2 · Ficha inicial</a>
+  <a href="programacion.html">3 · Programación</a>
+  <a href="sesion.html">4 · Sesión</a>
+  <a href="seguimiento.html">5 · Seguimiento</a>
+</nav>
+
+<main class="contenedor" style="gap:22px">
+  <header style="display:flex;flex-direction:column;gap:6px">
+    <div class="etiqueta-seccion verde">SIGESAPOL · DEPARTAMENTO DE NEFROLOGÍA · CONSULTA EXTERNA</div>
+    <h1 style="margin:0;font-size:26px">Flujo propuesto: del Procedimiento Programado al Programa de Hemodiálisis</h1>
+    <p style="margin:0;font-size:14px;color:var(--texto-2)">Requisito previo en todo el flujo: el paciente debe figurar como <b>ASEGURADO</b> (validación SITEDS / SUSALUD).</p>
+  </header>
+
+  <section style="display:flex;flex-direction:column;gap:10px" aria-labelledby="t-existente">
+    <h2 id="t-existente" class="etiqueta-seccion" style="margin:0">FLUJO EXISTENTE EN SIGESAPOL</h2>
+    <div class="flujo-fila">
+      <div class="paso"><span class="num">PASO 1</span><span class="ttl">Registro de Cita</span><span class="txt">El paciente programa su cita (fecha y hora).</span></div>
+      <div class="flecha"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M13 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <div class="paso"><span class="num">PASO 2</span><span class="ttl">Citas Médicas</span><span class="txt">Primera evaluación; solicita exámenes y receta.</span></div>
+      <div class="flecha"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M13 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <div class="paso"><span class="num">PASO 3</span><span class="ttl">Atenciones Médicas</span><span class="txt">Deriva a Nefrología y habilita «Procedimiento Programado» (nueva cita).</span></div>
+      <div class="flecha"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M13 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <a class="paso" href="bandeja.html" style="text-decoration:none;color:inherit"><span class="num">PASO 4</span><span class="ttl">Módulo de Procedimientos Programados</span><span class="txt">Bandeja de solicitudes → «Atender».</span></a>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:10px" aria-labelledby="t-nuevo">
+    <h2 id="t-nuevo" class="etiqueta-seccion verde" style="margin:0">NUEVO FLUJO · PROGRAMA DE HEMODIÁLISIS</h2>
+    <div class="flujo-fila">
+      <div class="paso nuevo"><span class="num">PASO 5 · REGLA</span><span class="ttl">¿Servicio Nefrología y código HD?</span><span class="txt">Si el procedimiento es 90935 / 90937 el sistema activa el flujo HD.</span></div>
+      <div class="flecha"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M13 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <a class="paso nuevo" href="ficha-inicial.html" style="text-decoration:none;color:inherit"><span class="num">PASO 6 · SOLO 1RA VEZ</span><span class="ttl">Ficha HC Inicial del Programa de HD</span><span class="txt">Laboratorio y receta precargados; el médico completa lo faltante.</span></a>
+      <div class="flecha"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M13 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <a class="paso nuevo" href="programacion.html" style="text-decoration:none;color:inherit"><span class="num">PASO 7</span><span class="ttl">Programación de sesiones</span><span class="txt">Esquema 3×semana, turno y puesto; genera las citas del periodo.</span></a>
+      <div class="flecha"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M13 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <a class="paso nuevo" href="sesion.html" style="text-decoration:none;color:inherit"><span class="num">PASO 8 · CADA CITA</span><span class="ttl">Registro de sesión de HD</span><span class="txt">Pre, intra y post diálisis, incidencias y medicación.</span></a>
+      <div class="flecha"><svg width="22" height="14" viewBox="0 0 22 14" aria-hidden="true"><path d="M1 7h18M13 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div>
+      <a class="paso nuevo" href="seguimiento.html" style="text-decoration:none;color:inherit"><span class="num">PASO 9 · MENSUAL</span><span class="ttl">Seguimiento y reevaluación</span><span class="txt">Al cerrar el periodo: renovar programación (vuelve al paso 7) o dar egreso.</span></a>
+    </div>
+  </section>
+</main>
+<script src="js/hd.js"></script>
+</body>
+</html>

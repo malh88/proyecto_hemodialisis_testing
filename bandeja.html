@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Módulo de Procedimientos Programados · SIGESAPOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hd.css">
+</head>
+<body>
+<nav class="proto-nav" aria-label="Pantallas del prototipo">
+  <strong>PROTOTIPO HD</strong>
+  <a href="index.html">0 · Flujo</a>
+  <a href="bandeja.html">1 · Bandeja</a>
+  <a href="ficha-inicial.html">2 · Ficha inicial</a>
+  <a href="programacion.html">3 · Programación</a>
+  <a href="sesion.html">4 · Sesión</a>
+  <a href="seguimiento.html">5 · Seguimiento</a>
+</nav>
+
+<main class="contenedor">
+  <div class="cabecera">
+    <h1 class="titulo-modulo" style="margin:0;font-size:16px">MÓDULO DE PROCEDIMIENTOS PROGRAMADOS</h1>
+    <span class="pill pill-verde">VISTA: NEFROLOGÍA · HEMODIÁLISIS</span>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><span class="k">SESIONES PROGRAMADAS HOY</span><span class="v">[N]</span></div>
+    <div class="kpi"><span class="k">PENDIENTES DE FICHA INICIAL</span><span class="v" style="color:var(--naranja)">[N]</span></div>
+    <div class="kpi"><span class="k">TURNO MAÑANA · TARDE · NOCHE</span><span class="v">[n] · [n] · [n]</span></div>
+    <div class="kpi"><span class="k">PUESTOS / MÁQUINAS LIBRES</span><span class="v">[n] de [N]</span></div>
+  </div>
+
+  <form id="form-bandeja" class="panel grid-campos" style="align-items:end">
+    <div><label class="lbl" for="f-desde">Fecha de Solicitud (Desde)</label><input id="f-desde" class="inp" value="01/10/2026"></div>
+    <div><label class="lbl" for="f-hasta">Fecha de Solicitud (Hasta)</label><input id="f-hasta" class="inp" value="22/10/2026"></div>
+    <div><label class="lbl" for="f-doc">Nº de Documento</label><input id="f-doc" class="inp" inputmode="numeric"></div>
+    <div><label class="lbl" for="f-nom">Nombres y Apellidos</label><input id="f-nom" class="inp"></div>
+    <div><label class="lbl" for="f-servicio">Servicio</label><select id="f-servicio" class="inp"><option>NEFROLOGÍA</option></select></div>
+    <div><label class="lbl" for="f-etapa">Etapa HD <span style="font-weight:400;color:var(--verde)">(nuevo)</span></label>
+      <select id="f-etapa" class="inp">
+        <option value="TODAS">TODAS</option>
+        <option value="FICHA">Requiere ficha inicial</option>
+        <option value="SIN_PROG">Sin programación</option>
+        <option value="EN_PROGRAMA">En programa</option>
+        <option value="REEVALUAR">Por reevaluar</option>
+        <option value="BLOQUEADO">Bloqueado (no asegurado)</option>
+      </select></div>
+    <div><label class="lbl" for="f-turno">Turno <span style="font-weight:400;color:var(--verde)">(nuevo)</span></label><select id="f-turno" class="inp"><option>TODOS</option><option>Mañana</option><option>Tarde</option><option>Noche</option></select></div>
+    <div><label class="lbl" for="f-estado">Estado de Solicitud</label><select id="f-estado" class="inp"><option>TODOS</option><option>PENDIENTE</option><option>OBSERVADO</option><option>ANULADO</option></select></div>
+    <button type="submit" class="btn btn-verde">Buscar</button>
+  </form>
+
+  <div class="panel" style="padding:0">
+    <div class="tabla-wrap">
+      <table id="tabla-bandeja" class="tabla amplia" style="min-width:980px">
+        <thead><tr>
+          <th style="width:60px">Código</th><th>Datos del paciente</th><th>Datos de la solicitud</th>
+          <th style="width:210px">Etapa en el programa HD</th><th style="width:100px">Estado</th><th style="width:170px">Acciones</th>
+        </tr></thead>
+        <tbody>
+          <tr data-etapa="FICHA" data-doc="09015037">
+            <td>13</td>
+            <td><b>ROMERO MANRIQUE DE MEJIA, LOURDES MARGOT</b><br>DNI 09015037 · 59 A · F<br><span class="pill pill-verde">ASEGURADO ✓</span></td>
+            <td>Nº 13 · 22/10/2026 10:08<br>AMBULATORIO · NEFROLOGÍA<br><b>90937</b> Hemodiálisis con evaluaciones repetidas</td>
+            <td><span class="pill pill-naranja">REQUIERE FICHA INICIAL</span><br><span class="nota">Primera atención en Nefrología</span></td>
+            <td><b>PENDIENTE</b></td>
+            <td><a class="btn sm btn-verde" href="ficha-inicial.html">Llenar ficha inicial</a></td>
+          </tr>
+          <tr data-etapa="SIN_PROG" data-doc="09924032">
+            <td>3</td>
+            <td><b>TABOADA CARRION, FREDDY EMILIO</b><br>DNI 09924032 · 64 A · M<br><span class="pill pill-verde">ASEGURADO ✓</span></td>
+            <td>Nº 3 · 16/10/2026 15:46<br>AMBULATORIO · NEFROLOGÍA<br><b>90937</b> Hemodiálisis con evaluaciones repetidas</td>
+            <td><span class="pill pill-azul">SIN PROGRAMACIÓN</span><br><span class="nota">Ficha inicial completa</span></td>
+            <td><b>PENDIENTE</b></td>
+            <td><a class="btn sm btn-verde" href="programacion.html">Programar sesiones</a></td>
+          </tr>
+          <tr data-etapa="EN_PROGRAMA" data-doc="">
+            <td>[Nº]</td>
+            <td><b>[APELLIDOS, NOMBRES]</b><br>DNI [########] · [EDAD] · [SEXO]<br><span class="pill pill-verde">ASEGURADO ✓</span></td>
+            <td>Nº [Nº] · [FECHA HORA]<br>AMBULATORIO · NEFROLOGÍA<br><b>90935</b> Hemodiálisis con una sola evaluación</td>
+            <td><span class="pill pill-verde">EN PROGRAMA · SESIÓN 5/12</span><br><span class="nota">Lun-Mié-Vie · Mañana · Puesto 04</span></td>
+            <td><b>PENDIENTE</b></td>
+            <td><div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><a class="btn sm btn-verde" href="sesion.html">Registrar sesión</a><a href="seguimiento.html">Ver seguimiento</a></div></td>
+          </tr>
+          <tr data-etapa="BLOQUEADO" data-doc="">
+            <td>[Nº]</td>
+            <td><b>[APELLIDOS, NOMBRES]</b><br>DNI [########] · [EDAD] · [SEXO]<br><span class="pill pill-rojo">NO ASEGURADO</span></td>
+            <td>Nº [Nº] · [FECHA HORA]<br>REFERIDO · NEFROLOGÍA<br><b>90937</b> Hemodiálisis con evaluaciones repetidas</td>
+            <td><span class="pill pill-gris">BLOQUEADO</span><br><span class="nota">Validar aseguramiento antes de atender</span></td>
+            <td><b>OBSERVADO</b></td>
+            <td><button type="button" class="btn sm btn-ambar">Observar</button></td>
+          </tr>
+          <tr data-etapa="REEVALUAR" data-doc="">
+            <td>[Nº]</td>
+            <td><b>[APELLIDOS, NOMBRES]</b><br>DNI [########] · [EDAD] · [SEXO]<br><span class="pill pill-verde">ASEGURADO ✓</span></td>
+            <td>Nº [Nº] · [FECHA HORA]<br>AMBULATORIO · NEFROLOGÍA<br><b>90937</b> Hemodiálisis con evaluaciones repetidas</td>
+            <td><span class="pill pill-morado">POR REEVALUAR · 12/12</span><br><span class="nota">Periodo concluye esta semana</span></td>
+            <td><b>PENDIENTE</b></td>
+            <td><a class="btn sm btn-verde" href="seguimiento.html">Reevaluar</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p id="contador-bandeja" class="nota" style="margin:0">Mostrando 5 de 5 registros</p>
+  <p class="nota" style="margin:0">La columna «Etapa en el programa HD» solo aparece cuando el servicio es Nefrología; la acción del botón cambia según la etapa.</p>
+</main>
+<script src="js/hd.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha HC Inicial · Programa de Hemodiálisis · SIGESAPOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hd.css">
+</head>
+<body>
+<nav class="proto-nav" aria-label="Pantallas del prototipo">
+  <strong>PROTOTIPO HD</strong>
+  <a href="index.html">0 · Flujo</a>
+  <a href="bandeja.html">1 · Bandeja</a>
+  <a href="ficha-inicial.html">2 · Ficha inicial</a>
+  <a href="programacion.html">3 · Programación</a>
+  <a href="sesion.html">4 · Sesión</a>
+  <a href="seguimiento.html">5 · Seguimiento</a>
+</nav>
+
+<main class="contenedor">
+  <h1 class="titulo-modulo" style="margin:0">MÓDULO DE PROCEDIMIENTO PROGRAMADO</h1>
+
+  <div class="tabs" role="tablist" aria-label="Secciones de la atención">
+    <button class="tab" role="tab" aria-selected="false" aria-controls="tp-nueva">NUEVA ATENCIÓN</button>
+    <button class="tab" role="tab" aria-selected="true" aria-controls="form-ficha">FICHA HC INICIAL HD</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="tp-hist">HIST. ATENCIONES</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="tp-hist">HIST. EXÁMENES DE LABORATORIO</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="tp-hist">HIST. EXÁMENES DE RADIOLOGÍA</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="tp-hist">HIST. INTERCONSULTA</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="tp-hist">HIST. REFERENCIAS / CONTRARREFERENCIAS</button>
+  </div>
+
+  <div class="grid-2">
+    <div class="panel"><div class="panel-titulo">DATOS DEL PACIENTE</div>
+      <div class="kv"><span class="k">TIPO Y Nº DE DOC</span><span>DNI - 09015037</span><span class="k">APELLIDOS Y NOMBRES</span><span>ROMERO MANRIQUE DE MEJIA LOURDES MARGOT</span><span class="k">FECHA DE NACIMIENTO</span><span>23/02/1967</span><span class="k">EDAD / SEXO</span><span>59 A, 7 M, 29 D - FEMENINO</span><span class="k">TIPO DE BENEFICIARIO</span><span>PADRES · <b style="color:var(--verde-osc)">ASEGURADO ✓</b></span></div>
+    </div>
+    <div class="panel"><div class="panel-titulo">DATOS GENERALES DE LA ATENCIÓN</div>
+      <div class="kv"><span class="k">COD. SITEDS SUSALUD</span><span>100609K4100T</span><span class="k">FECHA Y HORA</span><span>22/10/2026 00:00:00</span><span class="k">TIPO DE ATENCIÓN</span><span>AMBULATORIO</span><span class="k">SERVICIO SOLICITANTE</span><span>NEFROLOGÍA</span><span class="k">PROCEDIMIENTO</span><span>90937 · Z49.2 OTRAS DIÁLISIS</span></div>
+    </div>
+  </div>
+
+  <section id="tp-nueva" class="tab-panel panel" hidden>
+    <p class="nota" style="margin:0">Pantalla actual de «Nueva atención» del Módulo de Procedimiento Programado (sin cambios).</p>
+  </section>
+  <section id="tp-hist" class="tab-panel panel" hidden>
+    <p class="nota" style="margin:0">Historiales existentes de SIGESAPOL (sin cambios).</p>
+  </section>
+
+  <form id="form-ficha" class="tab-panel" style="display:flex;flex-direction:column;gap:16px" novalidate>
+    <div class="aviso aviso-ambar" role="note">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20L12 3zM12 10v5M12 18v.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div><b>Primera atención del paciente en el Programa de Hemodiálisis.</b> Complete la Historia Clínica Inicial. Los datos marcados <span class="origen-auto">SIGESAPOL</span> se cargaron de atenciones y exámenes previos; complete los marcados <span class="origen-manual">MANUAL</span>.</div>
+    </div>
+
+    <fieldset class="panel" style="margin:0"><legend class="sr-only">Ingreso al programa</legend>
+      <div class="panel-titulo">1. INGRESO AL PROGRAMA</div>
+      <div class="grid-campos">
+        <div><label class="lbl" for="a-fecha">Fecha de ingreso al programa</label><input id="a-fecha" class="inp" value="22/10/2026"></div>
+        <div><label class="lbl" for="a-procedencia">Procedencia</label><select id="a-procedencia" class="inp"><option value="AMBULATORIO">Consulta Externa · Ambulatorio</option><option value="REFERIDO">Consulta Externa · Referido</option></select></div>
+        <div><label class="lbl" for="a-referencia">Establecimiento de referencia</label><input id="a-referencia" class="inp" placeholder="Solo si es referido"></div>
+        <div><label class="lbl" for="a-terapia">Modalidad previa de terapia</label><select id="a-terapia" class="inp"><option>Ninguna (inicio)</option><option>Hemodiálisis en otro centro</option><option>Diálisis peritoneal</option><option>Trasplante</option></select></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="panel" style="margin:0"><legend class="sr-only">Antecedentes</legend>
+      <div class="panel-titulo">2. ANTECEDENTES Y ENFERMEDAD RENAL</div>
+      <div class="grid-campos">
+        <div><label class="lbl" for="b-etiologia">Etiología de la ERC *</label><select id="b-etiologia" class="inp" data-requerido><option value="">Seleccione…</option><option>Nefropatía diabética</option><option>Nefroesclerosis hipertensiva</option><option>Glomerulonefritis</option><option>Poliquistosis</option><option>Uropatía obstructiva</option><option>No determinada</option><option>Otra</option></select></div>
+        <div><label class="lbl" for="b-fecha-erc">Fecha de diagnóstico ERC</label><input id="b-fecha-erc" class="inp" placeholder="dd/mm/aaaa"></div>
+        <div><label class="lbl" for="b-diuresis">Diuresis residual (ml/24 h)</label><input id="b-diuresis" class="inp" inputmode="numeric"></div>
+        <div><label class="lbl" for="b-grupo">Grupo sanguíneo y factor</label><select id="b-grupo" class="inp"><option value="">Seleccione…</option><option>O+</option><option>O-</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option></select></div>
+      </div>
+      <div class="checks">
+        <label class="chk"><input type="checkbox" checked> Hipertensión arterial</label>
+        <label class="chk"><input type="checkbox"> Diabetes mellitus</label>
+        <label class="chk"><input type="checkbox"> Cardiopatía</label>
+        <label class="chk"><input type="checkbox"> Enfermedad cerebrovascular</label>
+        <label class="chk"><input type="checkbox"> Hepatopatía</label>
+        <label class="chk"><input type="checkbox"> Transfusiones previas</label>
+        <label class="chk"><input type="checkbox"> Alergias</label>
+      </div>
+      <div><label class="lbl" for="b-otros">Otros antecedentes / observaciones</label><textarea id="b-otros" class="inp"></textarea></div>
+    </fieldset>
+
+    <fieldset class="panel" style="margin:0"><legend class="sr-only">Acceso vascular</legend>
+      <div class="panel-titulo">3. ACCESO VASCULAR</div>
+      <div class="grid-campos">
+        <div><label class="lbl" for="c-acceso">Tipo de acceso *</label><select id="c-acceso" class="inp" data-requerido><option value="">Seleccione…</option><option>Fístula arteriovenosa (FAV)</option><option>Injerto (prótesis)</option><option>Catéter venoso central temporal</option><option>Catéter venoso central tunelizado</option></select></div>
+        <div><label class="lbl" for="c-ubicacion">Ubicación</label><select id="c-ubicacion" class="inp"><option value="">Seleccione…</option><option>Radiocefálica izq.</option><option>Humerocefálica izq.</option><option>Yugular interna der.</option><option>Femoral</option><option>Otra</option></select></div>
+        <div><label class="lbl" for="c-fecha">Fecha de colocación / creación</label><input id="c-fecha" class="inp" placeholder="dd/mm/aaaa"></div>
+        <div><label class="lbl" for="c-estado">Estado del acceso</label><select id="c-estado" class="inp"><option>Funcionante</option><option>En maduración</option><option>Disfuncional</option></select></div>
+      </div>
+    </fieldset>
+
+    <fieldset class="panel" style="margin:0"><legend class="sr-only">Examen físico</legend>
+      <div class="panel-titulo">4. EXAMEN FÍSICO DE INGRESO</div>
+      <div class="grid-campos">
+        <div><label class="lbl" for="d-peso">Peso (kg)</label><input id="d-peso" class="inp" inputmode="decimal"></div>
+        <div><label class="lbl" for="d-talla">Talla (cm)</label><input id="d-talla" class="inp" inputmode="decimal"></div>
+        <div><label class="lbl" for="d-imc">IMC</label><input id="d-imc" class="inp" placeholder="Calculado" readonly></div>
+        <div><label class="lbl" for="d-pa">Presión arterial (mmHg)</label><input id="d-pa" class="inp" placeholder="___ / ___"></div>
+        <div><label class="lbl" for="d-fc">Frecuencia cardiaca (lpm)</label><input id="d-fc" class="inp" inputmode="numeric"></div>
+        <div><label class="lbl" for="d-edema">Edema</label><select id="d-edema" class="inp"><option>Ausente</option><option>+</option><option>++</option><option>+++</option></select></div>
+      </div>
+    </fieldset>
+
+    <section class="panel">
+      <div class="panel-titulo"><span>5. EXÁMENES DE LABORATORIO</span><span class="sub">Último resultado disponible en SIGESAPOL · <a href="#">ver historial</a></span></div>
+      <div class="tabla-wrap">
+        <table class="tabla" style="min-width:760px">
+          <thead><tr><th>Examen</th><th style="width:180px">Resultado</th><th style="width:110px">Unidad</th><th style="width:150px">Fecha</th><th style="width:120px">Origen</th></tr></thead>
+          <tbody>
+            <tr class="grupo"><td colspan="5">Hematología</td></tr>
+            <tr><td>Hemoglobina</td><td>[valor]</td><td>g/dL</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>Hematocrito</td><td>[valor]</td><td>%</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr class="grupo"><td colspan="5">Bioquímica</td></tr>
+            <tr><td>Urea</td><td>[valor]</td><td>mg/dL</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>Creatinina</td><td>[valor]</td><td>mg/dL</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>Potasio</td><td>[valor]</td><td>mEq/L</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>Sodio</td><td>[valor]</td><td>mEq/L</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>Calcio</td><td><input class="inp sm" aria-label="Calcio" inputmode="decimal"></td><td>mg/dL</td><td><input class="inp sm" placeholder="dd/mm/aaaa" aria-label="Fecha calcio"></td><td><span class="origen-manual">MANUAL</span></td></tr>
+            <tr><td>Fósforo</td><td><input class="inp sm" aria-label="Fósforo" inputmode="decimal"></td><td>mg/dL</td><td><input class="inp sm" placeholder="dd/mm/aaaa" aria-label="Fecha fósforo"></td><td><span class="origen-manual">MANUAL</span></td></tr>
+            <tr><td>Albúmina</td><td>[valor]</td><td>g/dL</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>PTH intacta</td><td><input class="inp sm" aria-label="PTH" inputmode="decimal"></td><td>pg/mL</td><td><input class="inp sm" placeholder="dd/mm/aaaa" aria-label="Fecha PTH"></td><td><span class="origen-manual">MANUAL</span></td></tr>
+            <tr><td>Ferritina</td><td><input class="inp sm" aria-label="Ferritina" inputmode="decimal"></td><td>ng/mL</td><td><input class="inp sm" placeholder="dd/mm/aaaa" aria-label="Fecha ferritina"></td><td><span class="origen-manual">MANUAL</span></td></tr>
+            <tr class="grupo"><td colspan="5">Serología (obligatoria para asignar sala y puesto)</td></tr>
+            <tr><td>HBsAg *</td><td><select id="l-hbsag" class="inp sm" aria-label="HBsAg" data-requerido><option value="NO_REACTIVO">No reactivo</option><option value="REACTIVO">Reactivo</option></select></td><td>—</td><td>[dd/mm/aaaa]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>Anti-HCV *</td><td><select id="l-hcv" class="inp sm" aria-label="Anti-HCV" data-requerido><option value="">Seleccione…</option><option value="NO_REACTIVO">No reactivo</option><option value="REACTIVO">Reactivo</option></select></td><td>—</td><td><input class="inp sm" placeholder="dd/mm/aaaa" aria-label="Fecha anti-HCV"></td><td><span class="origen-manual">MANUAL</span></td></tr>
+            <tr><td>VIH *</td><td><select id="l-vih" class="inp sm" aria-label="VIH" data-requerido><option value="">Seleccione…</option><option value="NO_REACTIVO">No reactivo</option><option value="REACTIVO">Reactivo</option></select></td><td>—</td><td><input class="inp sm" placeholder="dd/mm/aaaa" aria-label="Fecha VIH"></td><td><span class="origen-manual">MANUAL</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="nota" style="margin:0">Un valor manual se guarda con el usuario y la fecha de registro; si luego llega el resultado de laboratorio, el sistema muestra ambos.</p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-titulo"><span>6. MEDICACIÓN ACTUAL</span><span class="sub">Desde la última receta registrada · <button type="button" id="btn-agregar-med" class="link-btn">+ agregar</button></span></div>
+      <div class="tabla-wrap">
+        <table id="tabla-meds" class="tabla" style="min-width:700px">
+          <thead><tr><th>Medicamento</th><th>Dosis</th><th>Vía</th><th>Frecuencia</th><th style="width:120px">Origen</th></tr></thead>
+          <tbody>
+            <tr><td>[Medicamento de la receta]</td><td>[dosis]</td><td>[vía]</td><td>[frecuencia]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>[Medicamento de la receta]</td><td>[dosis]</td><td>[vía]</td><td>[frecuencia]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+            <tr><td>[Medicamento de la receta]</td><td>[dosis]</td><td>[vía]</td><td>[frecuencia]</td><td><span class="origen-auto">SIGESAPOL</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <fieldset class="panel" style="margin:0"><legend class="sr-only">Prescripción inicial</legend>
+      <div class="panel-titulo">7. PRESCRIPCIÓN INICIAL DE HEMODIÁLISIS</div>
+      <div class="grid-campos">
+        <div><label class="lbl" for="p-frecuencia">Frecuencia</label><select id="p-frecuencia" class="inp"><option value="3">3 veces por semana</option><option value="2">2 veces por semana</option></select></div>
+        <div><label class="lbl" for="p-duracion">Duración por sesión (h)</label><input id="p-duracion" class="inp" value="4" inputmode="decimal"></div>
+        <div><label class="lbl" for="p-peso-seco">Peso seco objetivo (kg) *</label><input id="p-peso-seco" class="inp" inputmode="decimal" data-requerido></div>
+        <div><label class="lbl" for="p-qb">Flujo de sangre Qb (ml/min)</label><input id="p-qb" class="inp" inputmode="numeric"></div>
+        <div><label class="lbl" for="p-qd">Flujo de dializado Qd (ml/min)</label><input id="p-qd" class="inp" inputmode="numeric"></div>
+        <div><label class="lbl" for="p-filtro">Filtro / dializador</label><select id="p-filtro" class="inp"><option value="">Seleccione…</option><option>[Filtro del catálogo]</option></select></div>
+        <div><label class="lbl" for="p-bano">Baño: K / Ca (mEq/L)</label><input id="p-bano" class="inp" placeholder="__ / __"></div>
+        <div><label class="lbl" for="p-anticoag">Anticoagulación</label><select id="p-anticoag" class="inp"><option>Heparina no fraccionada</option><option>Bajo peso molecular</option><option>Sin heparina</option></select></div>
+        <div><label class="lbl" for="p-programa">Duración del programa</label><select id="p-programa" class="inp"><option value="12">1 mes (12 sesiones)</option><option value="24">2 meses (24 sesiones)</option></select></div>
+      </div>
+      <div><label class="lbl" for="p-indicaciones">Indicaciones médicas</label><textarea id="p-indicaciones" class="inp"></textarea></div>
+    </fieldset>
+
+    <div class="panel"><div class="panel-titulo">DATOS DEL RESPONSABLE DEL PROCEDIMIENTO</div>
+      <div class="kv"><span class="k">MÉDICO NEFRÓLOGO</span><span>[Apellidos y nombres] · CMP [Nº] · RNE [Nº]</span></div>
+    </div>
+
+    <div class="fila-acciones">
+      <a class="btn btn-rojo" href="bandeja.html">CANCELAR</a>
+      <button type="button" id="btn-borrador" class="btn btn-gris">GUARDAR BORRADOR</button>
+      <button type="submit" class="btn btn-primario">GUARDAR Y PROGRAMAR SESIONES</button>
+    </div>
+  </form>
+</main>
+<script src="js/hd.js"></script>
+</body>
+</html>

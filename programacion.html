@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programación de sesiones · Hemodiálisis · SIGESAPOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/hd.css">
+</head>
+<body>
+<nav class="proto-nav" aria-label="Pantallas del prototipo">
+  <strong>PROTOTIPO HD</strong>
+  <a href="index.html">0 · Flujo</a>
+  <a href="bandeja.html">1 · Bandeja</a>
+  <a href="ficha-inicial.html">2 · Ficha inicial</a>
+  <a href="programacion.html">3 · Programación</a>
+  <a href="sesion.html">4 · Sesión</a>
+  <a href="seguimiento.html">5 · Seguimiento</a>
+</nav>
+
+<main class="contenedor">
+  <div class="cabecera">
+    <div class="pila">
+      <span class="eyebrow">PROGRAMA DE HEMODIÁLISIS · PROGRAMACIÓN DE SESIONES</span>
+      <h1 class="grande" style="margin:0">ROMERO MANRIQUE DE MEJIA, LOURDES MARGOT</h1>
+      <span class="meta">DNI 09015037 · Acceso: [tipo] · HBsAg: No reactivo</span>
+    </div>
+    <span id="resumen-prog" class="pill pill-verde"></span>
+  </div>
+
+  <form id="form-programacion" style="display:flex;flex-direction:column;gap:16px">
+    <div class="panel">
+      <div class="panel-titulo"><span>PARÁMETROS DE PROGRAMACIÓN</span><span class="sub">Tomados de la prescripción inicial · editables</span></div>
+      <div class="grid-campos">
+        <div><span class="lbl" id="lb-esquema">Esquema semanal</span>
+          <div id="seg-esquema" class="segmentado" role="group" aria-labelledby="lb-esquema">
+            <button type="button" data-valor="LMV" aria-pressed="true">Lun · Mié · Vie</button>
+            <button type="button" data-valor="MJS" aria-pressed="false">Mar · Jue · Sáb</button>
+          </div></div>
+        <div><span class="lbl" id="lb-turno">Turno</span>
+          <div id="seg-turno" class="segmentado" role="group" aria-labelledby="lb-turno">
+            <button type="button" data-valor="MANANA" aria-pressed="true">Mañana</button>
+            <button type="button" data-valor="TARDE" aria-pressed="false">Tarde</button>
+            <button type="button" data-valor="NOCHE" aria-pressed="false">Noche</button>
+          </div></div>
+        <div><label class="lbl" for="q-inicio">Fecha de inicio</label><input id="q-inicio" class="inp" value="26/10/2026" placeholder="dd/mm/aaaa"></div>
+        <div><label class="lbl" for="q-sesiones">Nº de sesiones</label><select id="q-sesiones" class="inp"><option value="12">12 (1 mes)</option><option value="24">24 (2 meses)</option><option value="6">6</option></select></div>
+        <div><label class="lbl" for="q-sala">Sala</label><select id="q-sala" class="inp"><option value="GENERAL">Sala general (serología negativa)</option><option value="AISLADA">Sala aislada HBsAg (+)</option></select></div>
+        <div><label class="lbl" for="q-puesto">Puesto / máquina</label><select id="q-puesto" class="inp"><option value="04">Puesto 04 · libre todo el periodo</option><option value="07">Puesto 07 · ocupado 2 fechas</option></select></div>
+        <div><label class="lbl" for="q-hora">Hora de inicio</label><input id="q-hora" class="inp" value="07:00"></div>
+        <div><label class="lbl" for="q-duracion">Duración (h)</label><input id="q-duracion" class="inp" value="4"></div>
+      </div>
+      <p class="nota" style="margin:0">La sala se sugiere según la serología de la ficha inicial. Los feriados se saltan y la sesión pasa al siguiente día del esquema.</p>
+    </div>
+
+    <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(440px,1fr))">
+      <div class="panel">
+        <div class="panel-titulo"><span>VISTA PREVIA EN CALENDARIO</span></div>
+        <div id="calendario" class="calendario" aria-live="polite"></div>
+        <div class="leyenda">
+          <span><i class="cuadro" style="border:2px solid var(--verde);background:var(--verde-fondo)"></i>Sesión programada</span>
+          <span><i class="cuadro" style="border:2px dashed var(--rojo)"></i>Feriado (se reubica)</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-titulo"><span>CITAS QUE SE GENERARÁN</span><span class="sub">Procedimiento 90937 · Z49.2</span></div>
+        <div class="tabla-wrap" style="max-height:520px;overflow-y:auto">
+          <table id="tabla-citas" class="tabla" style="min-width:420px">
+            <thead><tr><th>Sesión</th><th>Fecha</th><th>Turno</th><th>Puesto</th><th>Estado</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="aviso aviso-azul" role="note">
+      <div>Al confirmar se crean <b id="txt-total-citas">12</b> citas en el Módulo de Procedimientos Programados, cada una vinculada a este programa. Cada cita aparece en la bandeja del día como «Registrar sesión».</div>
+    </div>
+
+    <div class="fila-acciones">
+      <a class="btn btn-rojo" href="bandeja.html">CANCELAR</a>
+      <button type="submit" class="btn btn-primario">CONFIRMAR Y GENERAR CITAS</button>
+    </div>
+  </form>
+</main>
+<script src="js/hd.js"></script>
+</body>
+</html>
